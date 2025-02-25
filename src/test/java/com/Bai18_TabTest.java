@@ -4,16 +4,13 @@ import java.util.ArrayList;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-//import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-//import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.utils.BasicTest;
 import com.utils.Utils;
 
-//import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class Bai18_TabTest extends BasicTest{
 
@@ -42,32 +39,29 @@ public class Bai18_TabTest extends BasicTest{
 
         Utils.hardWait();
 
-
+        //Open a new tab
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.open('about:blank','_blank');");
 
         ArrayList<String> tabs = new ArrayList<>(driver.getWindowHandles());
 
-        // Chuyển sang tab mới
+        // Move to new tab
         driver.switchTo().window(tabs.get(1));
 
-        // Mở lại URL trong tab mới
+        // Open URL in the new tab
         driver.get(url);
         Assert.assertEquals(driver.getCurrentUrl(), url);
-
-
         Utils.hardWait();
+
+
+        // Close the old tab
         driver.switchTo().window(tabs.get(0));
-
-        Utils.hardWait();
         driver.close();
 
-        //verify Login success
+        // Verify user is still logged in
         driver.switchTo().window(tabs.get(1));
         WebElement loginSuccess2 = driver.findElement(By.xpath("//li[contains(@class,'logout')]//a"));
         Assert.assertEquals(loginSuccess2.getText(), "Thoát");
-
-        Utils.hardWait();
         
 
     }
