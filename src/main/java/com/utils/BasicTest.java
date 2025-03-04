@@ -9,6 +9,7 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import java.util.concurrent.TimeUnit;
+import org.openqa.selenium.interactions.Actions;
 
 
 public abstract class BasicTest {
@@ -16,6 +17,7 @@ public abstract class BasicTest {
     public static final Logger logger = LogManager.getLogger();
     protected static WebDriver driver;
     // private String driverPath;
+    protected static Actions actions;
 
     @BeforeMethod
     public void preCondition() {
@@ -29,6 +31,7 @@ public abstract class BasicTest {
         // Maximize the browser
         driver.manage().window().maximize();
         //driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        actions = new Actions(driver);
     }
 
     @AfterMethod
