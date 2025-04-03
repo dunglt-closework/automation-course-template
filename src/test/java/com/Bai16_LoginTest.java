@@ -44,7 +44,7 @@ public class Bai16_LoginTest extends BasicTest {
         loginButton.click();
 
         WebElement ErrorMessage = driver.findElement(By.xpath("//ul[@class='woocommerce-error']"));
-        Assert.assertEquals(ErrorMessage.getText(), "Lỗi: Mục nhập mật khẩu trống.");
+        FErrorMessage.getText(), "Lỗi: Mục nhập mật khẩu trống.");
 
     }
     
